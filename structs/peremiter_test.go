@@ -17,23 +17,20 @@ func TestPer(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-
-	checkArea := func(t testing.TB, shape Shape, want float64) {
-		t.Helper()
-		got := shape.Area()
-		if got != want {
-			t.Errorf("got %.2f want %.2f", got, want)
-		}
+	areaTests := []struct {
+		shape Shape
+		want  float64
+	}{
+		{Rectangle{12, 6}, 72.0},
+		{Circle{10}, 10 * 10 * math.Pi},
+		{Triangle{12, 6}, 6 * 12},
 	}
 
-	t.Run("Test On Rectangle", func(t *testing.T) {
-		rect := Rectangle{10.0, 10.0}
-		checkArea(t, rect, 100.0)
-	})
-
-	t.Run("Test on Circle", func(t *testing.T) {
-		circle := Circle{10.0}
-		checkArea(t, circle, 10*10*math.Pi)
-	})
+	for _, tt := range areaTests {
+		got := tt.shape.Area()
+		if got != tt.want {
+			t.Errorf("got %.2f want %.2f", got, tt.want)
+		}
+	}
 
 }
