@@ -21,7 +21,7 @@ func TestArea(t *testing.T) {
 		shape Shape
 		want  float64
 	}{
-		{Rectangle{12, 6}, 72.0},
+		{shape: Rectangle{height: 12, width: 6}, want: 72.0},
 		{Circle{10}, 10 * 10 * math.Pi},
 		{Triangle{12, 6}, 6 * 12},
 	}
