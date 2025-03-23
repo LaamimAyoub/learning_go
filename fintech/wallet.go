@@ -1,6 +1,9 @@
 package fintech
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type Bitcoin int
 
@@ -18,4 +21,13 @@ func (w *Wallet) Balance() Bitcoin {
 
 func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
+}
+
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+	if amount > w.balance {
+		return errors.New("oo no")
+	}
+
+	w.balance -= amount
+	return nil
 }
