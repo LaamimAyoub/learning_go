@@ -18,6 +18,22 @@ func (s *SpySleeper) Sleep() {
 	s.Calls++
 }
 
+type SpySleeper2 struct {
+	Calls []string
+}
+
+func (s *SpySleeper2) Sleep() {
+	s.Calls = append(s.Calls, sleep)
+}
+
+func (s *SpySleeper2) Write(p []byte) (n int, err error) {
+	s.Calls = append(s.Calls, write)
+	return
+}
+
+const sleep = "sleep"
+const write = "write"
+
 type DefaultSpleeper struct{}
 
 func (s *DefaultSpleeper) Sleep() {
