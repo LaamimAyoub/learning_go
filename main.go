@@ -1,15 +1,11 @@
 package main
 
 import (
-	"log"
-	"mymodule/dep"
-	"net/http"
+	mockingtests "mymodule/mockingTests"
+	"os"
 )
 
-func MyGreeterHandler(w http.ResponseWriter, r *http.Request) {
-	dep.Greet(w, "world")
-}
-
 func main() {
-	log.Fatal(http.ListenAndServe(":5001", http.HandlerFunc(MyGreeterHandler)))
+	dsleeper := mockingtests.DefaultSpleeper{}
+	mockingtests.CountDown(os.Stdout, &dsleeper)
 }
