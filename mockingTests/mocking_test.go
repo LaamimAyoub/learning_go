@@ -20,4 +20,8 @@ Go!`
 		t.Errorf("got %s, want %s", got, want)
 	}
 
+	if spsleeper.Calls != 3 {
+		t.Errorf("didnt call spsleeper 3 times")
+	}
+
 }
