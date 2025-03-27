@@ -1,5 +1,10 @@
 package reflection
 
+import "reflect"
+
 func Walk(x interface{}, f func(input string)) {
-	f("The string should be passing")
+	val := reflect.ValueOf(x)
+	field := val.Field(0)
+	f(field.String())
+
 }
