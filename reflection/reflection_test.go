@@ -35,12 +35,23 @@ func TestWalkV2(t *testing.T) {
 		Input         interface{}
 		ExpectedCalls []string
 	}{
+		//This is case 1
 		{
 			"struct with one field",
 			struct {
 				Name string
 			}{"Chriss"},
 			[]string{"Chriss"},
+		},
+
+		//This is case 2
+		{
+			"struct with two Fields",
+			struct {
+				Name   string
+				Batata string
+			}{"Chriss", "Maticha"},
+			[]string{"Chriss", "Maticha"},
 		},
 	}
 
