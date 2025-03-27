@@ -53,6 +53,16 @@ func TestWalkV2(t *testing.T) {
 			}{"Chriss", "Maticha"},
 			[]string{"Chriss", "Maticha"},
 		},
+
+		//This is case 3
+		{
+			"struct with string and int",
+			struct {
+				Name string
+				nb   int
+			}{"Chriss", 1},
+			[]string{"Chriss"},
+		},
 	}
 
 	for _, test := range cases {
