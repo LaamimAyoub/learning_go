@@ -20,4 +20,8 @@ func TestWalk(t *testing.T) {
 
 	}
 
+	if got[0] != expected {
+		t.Errorf("Wrong func call want %s, got %s", expected, got[0])
+	}
+
 }
