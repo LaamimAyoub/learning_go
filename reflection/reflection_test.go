@@ -63,6 +63,18 @@ func TestWalkV2(t *testing.T) {
 			}{"Chriss", 1},
 			[]string{"Chriss"},
 		},
+
+		//This is case 4
+		{
+			"Nested fields",
+			struct {
+				Name string
+				st   struct {
+					Name string
+				}
+			}{"Chriss", struct{ Name string }{"Chriss"}},
+			[]string{"Chriss", "Chriss"},
+		},
 	}
 
 	for _, test := range cases {
@@ -73,7 +85,7 @@ func TestWalkV2(t *testing.T) {
 			})
 
 			if !reflect.DeepEqual(got, test.ExpectedCalls) {
-				t.Errorf("Failed test")
+				t.Errorf("Failed test got %v, want %v", got, test.ExpectedCalls)
 			}
 
 		})

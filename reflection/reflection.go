@@ -1,6 +1,8 @@
 package reflection
 
-import "reflect"
+import (
+	"reflect"
+)
 
 func Walk(x interface{}, f func(input string)) {
 	val := reflect.ValueOf(x)
@@ -9,6 +11,10 @@ func Walk(x interface{}, f func(input string)) {
 
 		if field.Kind() == reflect.String {
 			f(field.String())
+		}
+
+		if field.Kind() == reflect.Struct {
+			Walk(field.Interface(), f)
 		}
 
 	}
