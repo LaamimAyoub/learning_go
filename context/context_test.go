@@ -14,6 +14,15 @@ type spyStore struct {
 	t        *testing.T
 }
 
+type SpyResponseWriter struct {
+	written bool
+}
+
+func (s *SpyResponseWriter) Header() http.Header {
+	s.written = true
+	return nil
+}
+
 func (s *spyStore) Fetch(ctx context.Context) (string, error) {
 	data := make(chan string, 1)
 
